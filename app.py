@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import mysql.connector
+import os
 
 app = Flask(__name__)
 app.secret_key = "secret_cbl_123"
@@ -228,4 +229,7 @@ def delete_history(id):
     return redirect(url_for("history"))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
