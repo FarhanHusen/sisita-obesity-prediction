@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KUSIONER - Obesity Prediction</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #000;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border: 3px solid #000;
+      box-shadow: 10px 10px 0px #FFD700;
+      padding: 30px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 3px solid #FFD700;
+      padding-bottom: 10px;
+    }
+
+    h1 {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .section-title {
+      background-color: #000;
+      color: #FFD700;
+      padding: 10px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-left: 5px solid #FFD700;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      /* Slight roundness */
+      box-sizing: border-box;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #FFD700;
+      background-color: #fffde7;
+      outline: none;
+      box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    hr {
+      border: 0;
+      border-top: 2px dashed #ccc;
+      margin: 20px 0;
+    }
+
+    button {
+      width: 100%;
+      background-color: #FFD700;
+      color: #000000;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      border: 3px solid #000;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 5px 5px 0px #000;
+      transition: all 0.2s;
+      margin-top: 30px;
+    }
+
+    button:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px #000;
+    }
+
+    button:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    .logout-link {
+      display: block;
+      text-align: right;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .logout-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <a href="/logout" class="logout-link">LOGOUT</a>
+    <header>
+      <h1>Form Prediksi</h1>
+    </header>
+
+    <form method="post">
+      <div class="section-title">Infotmasi Pasien</div>
+      <div class="form-grid">
+        <div>
+          <label>No. Rekam Medis</label>
+          <input type="text" name="no_rekam_medis" placeholder="RM-XXXX" required>
+        </div>
+        <div>
+          <label>Nama Pasien</label>
+          <input type="text" name="nama_pasien" placeholder="Nama Lengkap" required>
+        </div>
+        <div>
+          <label>Jenis Kelamin</label>
+          <select name="Gender">
+            <option value="Male">Laki-laki (Male)</option>
+            <option value="Female">Perempuan (Female)</option>
+          </select>
+        </div>
+        <div>
+          <label>umur (Tahun)</label>
+          <input type="number" step="1" name="Age" required>
+        </div>
+        <div>
+          <label>Tinggi Badan (Meter, cth: 1.70)</label>
+          <input type="number" step="0.01" name="Height" required>
+        </div>
+        <div>
+          <label>Berat Badan (Kg)</label>
+          <input type="number" step="0.1" name="Weight" required>
+        </div>
+      </div>
+
+      <div class="section-title">Riwayat kesehatan dan Gaya Hidup</div>
+      <div class="form-grid">
+        <div>
+          <label>Riwayat Keluarga Gemuk?</label>
+          <select name="family_history_with_overweight">
+            <option value="1">Ya (Yes)</option>
+            <option value="0">Tidak (No)</option>
+          </select>
+        </div>
+        <div>
+          <label>Sering Makan Tinggi Kalori (FAVC)?</label>
+          <select name="FAVC">
+            <option value="1">Ya (Yes)</option>
+            <option value="0">Tidak (No)</option>
+          </select>
+        </div>
+        <div>
+          <label>Frekuensi Makan Sayur (FCVC)</label>
+          <select name="FCVC">
+            <option value="1">Jarang (1)</option>
+            <option value="2">Kadang (2)</option>
+            <option value="3">Sering (3)</option>
+          </select>
+        </div>
+        <div>
+          <label>Jumlah Makan Besar/Hari (NCP)</label>
+          <input type="number" step="1" min="1" max="4" name="NCP" value="3" required>
+        </div>
+        <div>
+          <label>Ngemil Antar Jam Makan (CAEC)?</label>
+          <select name="CAEC">
+            <option value="no">Tidak pernah</option>
+            <option value="Sometimes" selected>Kadang-kadang</option>
+            <option value="Frequently">Sering</option>
+            <option value="Always">Selalu</option>
+          </select>
+        </div>
+        <div>
+          <label>Merokok (SMOKE)?</label>
+          <select name="SMOKE">
+            <option value="0">Tidak</option>
+            <option value="1">Ya</option>
+          </select>
+        </div>
+        <div>
+          <label>Minum Air (Liter/Hari)</label>
+          <input type="number" step="0.5" name="CH2O" value="2.0" required>
+        </div>
+        <div>
+          <label>Monitor Kalori Harian (SCC)?</label>
+          <select name="SCC">
+            <option value="0">Tidak</option>
+            <option value="1">Ya</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-title">Physical Activity</div>
+      <div class="form-grid">
+        <div>
+          <label>Olahraga (Hari/Minggu)</label>
+          <input type="number" step="0.5" min="0" max="7" name="FAF" value="1" required>
+        </div>
+        <div>
+          <label>Main Gadget (Jam/Hari)</label>
+          <input type="number" step="0.5" min="0" max="24" name="TUE" value="1" required>
+        </div>
+        <div>
+          <label>Konsumsi Alkohol (CALC)</label>
+          <select name="CALC">
+            <option value="no">Tidak pernah</option>
+            <option value="Sometimes">Kadang</option>
+            <option value="Frequently">Sering</option>
+            <option value="Always">Selalu</option>
+          </select>
+        </div>
+        <div>
+          <label>Transportasi Utama</label>
+          <select name="MTRANS">
+            <option value="Public_Transportation">Transportasi Umum</option>
+            <option value="Walking">Jalan Kaki</option>
+            <option value="Automobile">Mobil Pribadi</option>
+            <option value="Motorbike">Motor</option>
+            <option value="Bike">Sepeda</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit">PREDIKSI</button>
+    </form>
+  </div>
+</body>
+
+</html>

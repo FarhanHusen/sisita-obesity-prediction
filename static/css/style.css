@@ -1,0 +1,511 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+    --primary-yellow: #FFD700;
+    --border-dark: #000;
+    --bg-soft: #f9f9f9;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- GLOBAL STYLE --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #000;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background-color: #ffffff;
+    border: 3px solid #000;
+    box-shadow: 10px 10px 0px #FFD700;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+/* --- BUTTON STYLE --- */
+button, .btn-home {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 3px solid #000;
+    transition: all 0.2s;
+}
+
+button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #000;
+}
+
+/* --- LOGIN SPECIFIC --- */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+/* --- FORM SPECIFIC --- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.section-title {
+    background-color: #000;
+    color: #FFD700;
+    padding: 10px;
+    margin-top: 30px;
+    font-weight: bold;
+    border-left: 5px solid #FFD700;
+}
+
+/* --- RESULT SPECIFIC --- */
+.status-box {
+    font-size: 28px;
+    padding: 20px;
+    border: 3px solid #000;
+    margin: 20px 0;
+}
+
+.normal-status { background-color: #d4edda; }
+.risk-status { background-color: #f8d7da; }
+
+/* --- ANIMASI TRANSISI HALAMAN --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.container {
+    animation: fadeIn 0.6s ease-out; /* Halaman akan muncul perlahan saat dimuat */
+}
+
+/* --- EFEK TOMBOL INTERAKTIF --- */
+button, .btn-home {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Efek saat tombol ditekan (Click Effect) */
+button:active, .btn-home:active {
+    transform: scale(0.95); /* Sedikit mengecil saat diklik */
+    box-shadow: 2px 2px 0px #000;
+}
+
+/* Efek "Glow" Kuning saat kursor diarahkan */
+button:hover {
+    background-color: #FFD700;
+    color: #000;
+    letter-spacing: 1px; /* Teks sedikit merenggang saat hover */
+}
+
+/* --- INPUT FOCUS ANIMATION --- */
+input, select {
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #000;
+    box-shadow: 5px 5px 0px #FFD700; /* Shadow muncul saat input aktif */
+    background-color: #fffdf0;
+}
+
+/* --- RESULT CARD ANIMATION --- */
+.status-box {
+    transition: transform 0.3s ease;
+}
+
+.status-box:hover {
+    transform: scale(1.02); /* Hasil sedikit membesar saat disentuh kursor */
+}
+
+/* =========================
+   AUTH (LOGIN) PAGE
+========================= */
+
+/* =========================
+   AUTH (LOGIN) PAGE – MEDICAL THEME
+========================= */
+
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Background medis modern */
+    background:
+        linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 255, 255, 0.95)),
+        repeating-linear-gradient(
+            45deg,
+            rgba(0, 0, 0, 0.03),
+            rgba(0, 0, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 20px
+        );
+}
+
+/* Card login */
+.login-card {
+    width: 420px;
+    background: #ffffff;
+    border: 2px solid #000;
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 8px 8px 0 #FFD700;
+    animation: floatIn 0.6s ease;
+}
+
+/* Logo SISITA */
+.logo-box {
+    width: 72px;
+    height: 72px;
+    background: #FFD700;
+    border: 2px solid #000;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    margin: 0 auto 16px;
+}
+
+/* Judul */
+.login-card h2 {
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+/* Subjudul */
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo-box {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    border-radius: 18px;
+    background: #FFD700;
+    color: #000;
+    font-weight: 800;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #000;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* ===== FLOATING INPUT ===== */
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 10px;
+    border: 2px solid #000;
+    background: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    padding: 0 5px;
+    font-size: 13px;
+    color: #777;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -8px;
+    font-size: 12px;
+    color: #000;
+}
+
+/* ===== BUTTON ===== */
+
+.login-card button {
+    width: 100%;
+    padding: 14px;
+    background: #FFD700;
+    border: 3px solid #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.login-card button:hover {
+    background: #000;
+    color: #FFD700;
+    letter-spacing: 1px;
+}
+
+/* ===== ERROR ===== */
+
+.error-msg {
+    color: #ff4757;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* =========================
+   RESULT PAGE STYLE
+========================= */
+
+/* Container Result */
+.container[style*="max-width: 600px"] {
+    border-radius: 16px;
+    animation: floatIn 0.8s ease;
+}
+
+/* Judul */
+.container h1 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+/* Status Box */
+.status-box {
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px #000;
+    animation: pulseStatus 1.5s infinite alternate;
+}
+
+/* Animasi Status */
+@keyframes pulseStatus {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.03);
+    }
+}
+
+/* Normal & Risk lebih kontras */
+.normal-status {
+    background-color: #c3f3d3;
+}
+
+.risk-status {
+    background-color: #f7bfbf;
+}
+
+/* Faktor Box */
+.factors {
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 6px 6px 0 #FFD700;
+}
+
+/* Advice Box */
+.advice-box {
+    border-radius: 12px;
+    font-style: italic;
+    box-shadow: 4px 4px 0 #FFD700;
+}
+
+/* =========================
+   BUTTON RESULT
+========================= */
+
+.btn-home {
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Hover seperti login */
+.btn-home:hover {
+    background: #000;
+    color: #FFD700;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #FFD700;
+}
+
+/* Klik */
+.btn-home:active {
+    transform: scale(0.95);
+    box-shadow: 2px 2px 0px #000;
+}
+
+/* Logout kecil */
+.container a[href="/logout"] {
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.container a[href="/logout"]:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   HISTORY PAGE STYLE
+========================= */
+
+/* Container History */
+.container[style*="max-width: 1100px"] {
+    border-radius: 16px;
+    animation: floatIn 0.8s ease;
+}
+
+/* Header History */
+.container h1 {
+    font-size: 26px;
+}
+
+/* Table Wrapper */
+.table-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    border: 2px solid #000;
+    box-shadow: 6px 6px 0 #FFD700;
+}
+
+/* Table */
+table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Header Table */
+th {
+    letter-spacing: 1px;
+}
+
+/* Row Hover */
+tbody tr:hover {
+    background-color: #fff3b0;
+    transition: 0.3s;
+}
+
+/* Status text */
+td strong {
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: #eee;
+}
+
+/* =========================
+   BUTTON HISTORY
+========================= */
+
+.btn-home {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Hover animasi */
+.btn-home:hover {
+    background: #000 !important;
+    color: #FFD700;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 #FFD700;
+}
+
+/* Delete Button */
+.btn-delete {
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    transform: scale(1.05);
+    box-shadow: 3px 3px 0 #000;
+}
+
+/* Logout kecil */
+.container a[href="/logout"] {
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.container a[href="/logout"]:hover {
+    text-decoration: underline;
+}
+
+.search-box {
+    margin: 15px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.search-box input {
+    width: 300px;
+    padding: 10px 12px;
+    border: 2px solid #000;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+}
+
+mark {
+    background-color: #FFD700;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 6px 12px;
+    border: 2px solid #000;
+    background: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.pagination button.active {
+    background: #FFD700;
+}

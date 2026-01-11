@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Riwayat Prediksi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .table-container { overflow-x: auto; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 2px solid #000; padding: 12px; text-align: left; }
+        th { background-color: #FFD700; text-transform: uppercase; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        .btn-delete {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border: 1px solid #000;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .btn-delete:hover { background-color: #cc0000; }
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 1100px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>Riwayat Rekam Medis</h1>
+            <div style="display: flex; gap: 10px; align-items: center;">
+                <a href="javascript:history.back()" class="btn-home" style="padding: 5px 10px; text-decoration: none; background: #eee;">← Kembali</a>
+                <a href="/questionnaire" class="btn-home" style="padding: 5px 10px; text-decoration: none;">+ Form Baru</a>
+                <a href="/logout" style="color: red; margin-left: 10px; font-size: 14px;">Logout</a>
+            </div>
+        </div>
+        <div class="table-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Cari data riwayat...">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No. RM</th>
+                        <th>Nama Pasien</th>
+                        <th>Status</th>
+                        <th>Probabilitas</th>
+                        <th>Tanggal & Waktu</th>
+                        <th>Hapus</th> </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row.no_rekam_medis }}</td>
+                        <td>{{ row.nama_pasien }}</td>
+                        <td><strong>{{ row.status }}</strong></td>
+                        <td>{{ (row.proba * 100) | round(1) }}%</td>
+                        <td>{{ row.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+                        <td>
+                            <a href="{{ url_for('delete_history', id=row.id) }}" 
+                               class="btn-delete" 
+                               onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" style="text-align: center;">Belum ada data riwayat.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination" id="pagination"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='javascript/history.js') }}"></script>
+</body>
+</html>

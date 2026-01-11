@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan Prediksi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+  <div class="container" style="max-width: 600px; text-align: center;">
+    <h1>Analysis Result</h1>
+
+    <div class="status-box {% if status == 'Normal' %}normal-status{% else %}risk-status{% endif %}">
+      {{ status }}
+    </div>
+
+    <p><strong>Nama Pasien:</strong> {{ nama }}</p>
+    <p><strong>Probabilitas:</strong> {{ (proba * 100) | round(1) }}%</p>
+
+    {% if status != "Normal" %}
+    <div class="factors" style="text-align: left; margin-top: 20px;">
+      <h3 class="section-title" style="margin-top: 0;">Faktor Utama:</h3>
+      <p>Berdasarkan data Anda, faktor ini yang paling berpengaruh:</p>
+      <ul>
+        {% for feature, val in top_features %}
+        <li><strong>{{ feature }}</strong>: {{ val }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div class="advice-box" style="margin-top: 20px; padding: 15px; border: 2px dashed #000; background: #fffde7;">
+      <strong>Saran Kesehatan:</strong>
+      <ul style="list-style: none; padding-left: 0;">
+        {% for item in advice %}
+          <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: center;">
+      <a href="/questionnaire" class="btn-home" style="text-decoration: none; padding: 10px 20px; display: inline-block;">Kembali ke Form</a>
+      <a href="/history" class="btn-home" style="text-decoration: none; padding: 10px 20px; display: inline-block; background-color: #FFD700;">Lihat Riwayat</a>
+    </div>
+    
+    <div style="margin-top: 20px;">
+        <a href="/logout" style="color: red; font-size: 14px;">Logout</a>
+    </div>
+  </div>
+</body>
+
+</html>

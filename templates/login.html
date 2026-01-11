@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - SISITA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="login-card animate__animated animate__fadeInUp">
+      
+      <div class="logo-box animate__animated animate__pulse animate__infinite animate__slow">
+        SISITA
+      </div>
+
+      <h2>Sistem Prediksi Obesitas</h2>
+      <p class="subtitle">Silakan login untuk melanjutkan</p>
+
+      <form method="post">
+        <div class="input-group">
+          <input type="text" name="username" required>
+          <label>Username</label>
+        </div>
+
+        <div class="input-group">
+          <input type="password" name="password" required>
+          <label>Password</label>
+        </div>
+
+        <button type="submit">Masuk</button>
+      </form>
+
+      {% if error %}
+        <p class="error-msg animate__animated animate__shakeX">{{ error }}</p>
+      {% endif %}
+    </div>
+  </div>
+</body>
+</html>
