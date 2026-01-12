@@ -15,10 +15,11 @@ with open("prediksi.pkl", "rb") as f:
 
 # 2. KONFIGURASI DATABASE
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "",
-    "database": "cbl_obesitas"
+    "host": os.environ.get("DB_HOST"),
+    "user": os.environ.get("DB_USER"),
+    "password": os.environ.get("DB_PASSWORD"),
+    "database": os.environ.get("DB_NAME"),
+    "port": int(os.environ.get("DB_PORT", 3306))
 }
 
 VALID_USERNAME = "admin"
