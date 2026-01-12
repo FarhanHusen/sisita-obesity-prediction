@@ -227,3 +227,5 @@ def delete_history(id):
     
     # Setelah hapus, kembali ke halaman riwayat
     return redirect(url_for("history"))
+
+app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
