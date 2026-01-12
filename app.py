@@ -4,6 +4,7 @@ import numpy as np
 import pickle
 import mysql.connector
 import os
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 app.secret_key = "secret_cbl_123"
@@ -13,13 +14,20 @@ app.secret_key = "secret_cbl_123"
 with open("prediksi.pkl", "rb") as f:
     model = pickle.load(f)
 
-# 2. KONFIGURASI DATABASE
+# 2. KONFIGURASI DATABASE (RAILWAY)
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if not DATABASE_URL:
+    raise RuntimeError("DATABASE_URL belum diset di Railway")
+
+db_url = urlparse(DATABASE_URL)
+
 DB_CONFIG = {
-    "host": os.environ.get("MYSQLHOST"),
-    "user": os.environ.get("MYSQLUSER"),
-    "password": os.environ.get("MYSQLPASSWORD"),
-    "database": os.environ.get("MYSQLDATABASE"),
-    "port": int(os.environ.get("MYSQLPORT", 3306))
+    "host": db_url.hostname,
+    "user": db_url.username,
+    "password": db_url.password,
+    "database": db_url.path.lstrip("/"),
+    "port": db_url.port or 3306
 }
 
 VALID_USERNAME = "admin"
