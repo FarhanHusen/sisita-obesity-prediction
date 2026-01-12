@@ -227,6 +227,3 @@ def delete_history(id):
     
     # Setelah hapus, kembali ke halaman riwayat
     return redirect(url_for("history"))
-
-if __name__ == "__main__":
-    app.run(debug=True)
