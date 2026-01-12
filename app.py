@@ -198,17 +198,18 @@ def logout():
 def history():
     if not session.get("logged_in"):
         return redirect(url_for("login"))
-    
+
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True) # Menggunakan dictionary agar mudah dibaca di HTML
-    
-    # Mengambil semua data dari yang terbaru
+    if not conn:
+        return "Database tidak terhubung", 500
+
+    cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM rekam_medis ORDER BY created_at DESC")
     rows = cursor.fetchall()
-    
+
     cursor.close()
     conn.close()
-    
+
     return render_template("history.html", data=rows)
 
 @app.route("/delete_history/<int:id>")
